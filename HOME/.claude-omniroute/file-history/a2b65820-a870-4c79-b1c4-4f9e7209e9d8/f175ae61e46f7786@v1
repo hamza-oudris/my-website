@@ -1,0 +1,34 @@
+import Link from "next/link"
+import { Zap } from "lucide-react"
+
+export default function Footer() {
+  return (
+    <footer className="border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 mt-auto">
+      <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-3 gap-8 text-sm text-zinc-500 dark:text-zinc-400">
+        <div className="flex flex-col gap-2">
+          <Link href="/" className="flex items-center gap-2 font-bold text-base text-zinc-900 dark:text-white mb-1">
+            <Zap className="w-4 h-4 text-indigo-600" />
+            ShopNext
+          </Link>
+          <p>Modern e-commerce built with Next.js and Tailwind CSS.</p>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <p className="font-semibold text-zinc-700 dark:text-zinc-200">Shop</p>
+          <Link href="/products" className="hover:text-zinc-900 dark:hover:text-white transition-colors">All Products</Link>
+          <Link href="/cart" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Cart</Link>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <p className="font-semibold text-zinc-700 dark:text-zinc-200">Info</p>
+          <span>Free shipping over $100</span>
+          <span>30-day returns</span>
+          <span>24/7 support</span>
+        </div>
+      </div>
+      <div className="border-t border-zinc-100 dark:border-zinc-800 py-4 text-center text-xs text-zinc-400">
+        © 2026 ShopNext. All rights reserved.
+      </div>
+    </footer>
+  )
+}

@@ -1,0 +1,10 @@
+{
+  "claude-plugins-official": {
+    "source": {
+      "source": "github",
+      "repo": "anthropics/claude-plugins-official"
+    },
+    "installLocation": "C:\\Users\\hamza\\Documents\\Codex\\2026-10-11\\referenced-chatgpt-conversation-this-is-an\\my-app\\HOME\\.claude-omniroute\\plugins\\marketplaces\\claude-plugins-official",
+    "lastUpdated": "2026-10-11T16:45:32.844Z"
+  }
+}

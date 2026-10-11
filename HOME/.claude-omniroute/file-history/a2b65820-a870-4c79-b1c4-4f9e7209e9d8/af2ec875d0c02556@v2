@@ -1,0 +1,56 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+
+type Props = {
+  images: string[];
+  name: string;
+};
+
+export default function ImageGallery({ images, name }: Props) {
+  const [active, setActive] = useState(0);
+
+  return (
+    <div className="flex flex-col gap-4">
+      {/* Main image */}
+      <div className="relative aspect-[3/4] bg-[var(--bg-elevated)] overflow-hidden">
+        <Image
+          key={active}
+          src={images[active]}
+          alt={`${name} — view ${active + 1}`}
+          fill
+          priority
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover animate-fade-in"
+        />
+      </div>
+
+      {/* Thumbnails */}
+      {images.length > 1 && (
+        <div className="flex gap-3">
+          {images.map((src, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              aria-label={`View image ${i + 1}`}
+              className={`relative w-16 h-20 overflow-hidden shrink-0 transition-all duration-300 ${
+                active === i
+                  ? "ring-2 ring-[var(--gold-primary)] ring-offset-2 ring-offset-[var(--bg-base)]"
+                  : "opacity-50 hover:opacity-80"
+              }`}
+            >
+              <Image
+                src={src}
+                alt={`Thumbnail ${i + 1}`}
+                fill
+                sizes="64px"
+                className="object-cover"
+              />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}

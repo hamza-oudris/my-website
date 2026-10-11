@@ -1,0 +1,93 @@
+"use client";
+
+import { useState, useRef, MouseEvent } from "react";
+import Image from "next/image";
+
+type Props = {
+  images: string[];
+  name: string;
+};
+
+export default function ImageGallery({ images, name }: Props) {
+  const [active, setActive] = useState(0);
+  const [zoomed, setZoomed] = useState(false);
+  const [origin, setOrigin] = useState({ x: 50, y: 50 });
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  function handleMouseMove(e: MouseEvent<HTMLDivElement>) {
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setOrigin({ x, y });
+  }
+
+  return (
+    <div className="flex flex-col gap-4">
+      {/* Main image with zoom */}
+      <div
+        ref={containerRef}
+        className="relative aspect-[3/4] bg-[var(--bg-elevated)] overflow-hidden cursor-default select-none"
+        onMouseEnter={() => setZoomed(true)}
+        onMouseLeave={() => setZoomed(false)}
+        onMouseMove={handleMouseMove}
+      >
+        <Image
+          key={active}
+          src={images[active]}
+          alt={`${name} — view ${active + 1}`}
+          fill
+          priority
+          sizes="(max-width: 768px) 100vw, 50vw"
+          draggable={false}
+          className="object-cover animate-fade-in transition-transform duration-200 ease-out will-change-transform"
+          style={{
+            transformOrigin: `${origin.x}% ${origin.y}%`,
+            transform: zoomed ? "scale(1.9)" : "scale(1)",
+          }}
+        />
+
+        {/* Lens crosshair hint — fades out once user moves */}
+        {!zoomed && (
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <span className="text-[10px] tracking-widest uppercase text-[var(--text-muted)] bg-[var(--bg-base)]/50 px-3 py-1.5 backdrop-blur-sm">
+              Hover to zoom
+            </span>
+          </div>
+        )}
+
+        {/* Gold corner accents */}
+        <div className="absolute top-0 left-0 w-6 h-6 border-t border-l border-[var(--border-gold)] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-6 h-6 border-t border-r border-[var(--border-gold)] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-6 h-6 border-b border-l border-[var(--border-gold)] pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-[var(--border-gold)] pointer-events-none" />
+      </div>
+
+      {/* Thumbnails */}
+      {images.length > 1 && (
+        <div className="flex gap-3">
+          {images.map((src, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              aria-label={`View image ${i + 1}`}
+              className={`relative w-16 h-20 overflow-hidden shrink-0 transition-all duration-300 ${
+                active === i
+                  ? "ring-2 ring-[var(--gold-primary)] ring-offset-2 ring-offset-[var(--bg-base)]"
+                  : "opacity-50 hover:opacity-80"
+              }`}
+            >
+              <Image
+                src={src}
+                alt={`Thumbnail ${i + 1}`}
+                fill
+                sizes="64px"
+                className="object-cover"
+              />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}

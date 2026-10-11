@@ -1,0 +1,116 @@
+export type Product = {
+  id: string
+  name: string
+  price: number
+  originalPrice?: number
+  description: string
+  image: string
+  category: string
+  rating: number
+  reviews: number
+  badge?: string
+}
+
+export const products: Product[] = [
+  {
+    id: "1",
+    name: "Wireless Noise-Cancelling Headphones",
+    price: 249.99,
+    originalPrice: 349.99,
+    description:
+      "Premium over-ear headphones with active noise cancellation, 30-hour battery life, and exceptional sound quality. Perfect for travel, work, or everyday listening.",
+    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80",
+    category: "Electronics",
+    rating: 4.8,
+    reviews: 2341,
+    badge: "Sale",
+  },
+  {
+    id: "2",
+    name: "Minimalist Leather Watch",
+    price: 189.00,
+    description:
+      "A clean, modern timepiece with a genuine leather strap and sapphire crystal glass. Water-resistant to 50m. Timeless style for any occasion.",
+    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80",
+    category: "Accessories",
+    rating: 4.6,
+    reviews: 876,
+    badge: "New",
+  },
+  {
+    id: "3",
+    name: "Running Shoes Pro",
+    price: 129.99,
+    originalPrice: 159.99,
+    description:
+      "Lightweight, responsive running shoes with energy-return foam and breathable mesh upper. Designed for road and track runners who demand performance.",
+    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80",
+    category: "Footwear",
+    rating: 4.7,
+    reviews: 5120,
+    badge: "Sale",
+  },
+  {
+    id: "4",
+    name: "Portable Bluetooth Speaker",
+    price: 79.99,
+    description:
+      "360-degree sound in a compact, waterproof design. Up to 24 hours playtime on a single charge. Drop-resistant and built for adventures.",
+    image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&q=80",
+    category: "Electronics",
+    rating: 4.5,
+    reviews: 1450,
+  },
+  {
+    id: "5",
+    name: "Organic Cotton Tote Bag",
+    price: 34.99,
+    description:
+      "Made from 100% GOTS-certified organic cotton. Spacious enough for groceries, books, or beach days. Strong handles and reinforced base.",
+    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80",
+    category: "Accessories",
+    rating: 4.4,
+    reviews: 630,
+  },
+  {
+    id: "6",
+    name: "Stainless Steel Water Bottle",
+    price: 44.99,
+    description:
+      "Double-wall vacuum insulation keeps drinks cold 24 hours or hot 12 hours. BPA-free, leak-proof lid, and fits most car cup holders.",
+    image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&q=80",
+    category: "Kitchen",
+    rating: 4.9,
+    reviews: 3280,
+    badge: "Best Seller",
+  },
+  {
+    id: "7",
+    name: "Mechanical Keyboard",
+    price: 159.00,
+    description:
+      "Compact TKL layout with tactile switches, per-key RGB lighting, and a premium aluminum frame. Built for programmers and gamers alike.",
+    image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&q=80",
+    category: "Electronics",
+    rating: 4.7,
+    reviews: 990,
+  },
+  {
+    id: "8",
+    name: "Yoga Mat Premium",
+    price: 69.99,
+    description:
+      "6mm thick non-slip natural rubber mat with alignment lines. Eco-friendly, sweat-resistant surface ideal for yoga, pilates, and stretching.",
+    image: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=600&q=80",
+    category: "Fitness",
+    rating: 4.6,
+    reviews: 2100,
+    badge: "New",
+  },
+]
+
+export function getProduct(id: string): Product | undefined {
+  return products.find((p) => p.id === id)
+}
+
+export const categories = [...new Set(products.map((p) => p.category))]

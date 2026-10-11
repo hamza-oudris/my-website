@@ -1,0 +1,371 @@
+﻿export type ProductVariant = {
+  size: string;
+  inStock: boolean;
+};
+
+export type Product = {
+  id: string;
+  slug: string;
+  name: string;
+  price: number;
+  originalPrice?: number;
+  description: string;
+  details: string[];
+  images: string[];
+  category: "Outerwear" | "Dresses" | "Knitwear" | "Trousers" | "Accessories";
+  variants: ProductVariant[];
+  rating: number;
+  reviews: number;
+  badge?: "New" | "Sale" | "Limited";
+  featured: boolean;
+};
+
+export type Category = Product["category"];
+
+const ALL_SIZES: ProductVariant[] = [
+  { size: "XS", inStock: true },
+  { size: "S",  inStock: true },
+  { size: "M",  inStock: true },
+  { size: "L",  inStock: true },
+  { size: "XL", inStock: false },
+];
+
+const DRESS_SIZES: ProductVariant[] = [
+  { size: "XS", inStock: true },
+  { size: "S",  inStock: true },
+  { size: "M",  inStock: true },
+  { size: "L",  inStock: false },
+  { size: "XL", inStock: false },
+];
+
+export const products: Product[] = [
+  {
+    id: "1",
+    slug: "onyx-blazer-coat",
+    name: "Onyx Blazer Coat",
+    price: 890,
+    description:
+      "A sculptural double-breasted coat in fine Italian wool. Structured shoulders meet a fluid hem â€” power and grace in equal measure.",
+    details: [
+      "100% Italian virgin wool",
+      "Double-breasted, peak lapels",
+      "Fully lined in silk-blend",
+      "Dry clean only",
+      "Model is 178cm, wearing size S",
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80&auto=format&fit=crop",
+    ],
+    category: "Outerwear",
+    variants: ALL_SIZES,
+    rating: 4.9,
+    reviews: 124,
+    badge: "New",
+    featured: true,
+  },
+  {
+    id: "2",
+    slug: "velvet-midi-dress",
+    name: "Velvet Midi Dress",
+    price: 620,
+    originalPrice: 780,
+    description:
+      "Deep midnight velvet that moves with you. A bias-cut silhouette that skims the body with effortless sophistication.",
+    details: [
+      "95% silk velvet, 5% elastane",
+      "Bias cut for fluid drape",
+      "V-neckline, adjustable straps",
+      "Hand wash cold or dry clean",
+      "Model is 176cm, wearing size XS",
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&q=80&auto=format&fit=crop",
+    ],
+    category: "Dresses",
+    variants: DRESS_SIZES,
+    rating: 4.8,
+    reviews: 89,
+    badge: "Sale",
+    featured: true,
+  },
+  {
+    id: "3",
+    slug: "cashmere-turtleneck",
+    name: "Cashmere Turtleneck",
+    price: 445,
+    description:
+      "Four-ply Mongolian cashmere in a relaxed, oversized silhouette. The kind of piece you reach for first every morning.",
+    details: [
+      "100% Grade-A Mongolian cashmere",
+      "4-ply construction for warmth",
+      "Relaxed, oversized fit",
+      "Dry clean or hand wash cold",
+      "Available in Black, Ivory, Camel",
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&q=80&auto=format&fit=crop",
+    ],
+    category: "Knitwear",
+    variants: ALL_SIZES,
+    rating: 4.9,
+    reviews: 203,
+    featured: true,
+  },
+  {
+    id: "4",
+    slug: "tailored-trousers-charcoal",
+    name: "Tailored Trousers",
+    price: 380,
+    description:
+      "Wide-leg trousers cut from charcoal grey wool flannel. A Savile Row-inspired silhouette reinterpreted for the modern wardrobe.",
+    details: [
+      "98% wool flannel, 2% elastane",
+      "Wide-leg, high-rise cut",
+      "Two side pockets, one back welt pocket",
+      "Dry clean only",
+      "Model is 178cm, wearing size S",
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1594938298603-c8148c4b4ce4?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=800&q=80&auto=format&fit=crop",
+    ],
+    category: "Trousers",
+    variants: ALL_SIZES,
+    rating: 4.7,
+    reviews: 67,
+    badge: "New",
+    featured: true,
+  },
+  {
+    id: "5",
+    slug: "leather-crossbody-bag",
+    name: "Leather Crossbody Bag",
+    price: 560,
+    description:
+      "Full-grain Italian leather in a structured crossbody silhouette. Gold hardware, suede interior, and a magnetic closure that satisfies.",
+    details: [
+      "Full-grain Italian calf leather",
+      "18k gold-plated hardware",
+      "Suede interior lining",
+      "Adjustable chain strap (max 120cm)",
+      "Dimensions: 22 Ã— 16 Ã— 6cm",
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=800&q=80&auto=format&fit=crop",
+    ],
+    category: "Accessories",
+    variants: [{ size: "One Size", inStock: true }],
+    rating: 4.9,
+    reviews: 156,
+    badge: "Limited",
+    featured: true,
+  },
+  {
+    id: "6",
+    slug: "silk-wrap-dress",
+    name: "Silk Wrap Dress",
+    price: 495,
+    description:
+      "A wrap dress in pure silk charmeuse that catches the light with every movement. Timeless femininity for day to evening.",
+    details: [
+      "100% silk charmeuse",
+      "Self-tie wrap silhouette",
+      "V-neckline, midi length",
+      "Dry clean only",
+      "Model is 176cm, wearing size S",
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1495385794356-15371f348c31?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=800&q=80&auto=format&fit=crop",
+    ],
+    category: "Dresses",
+    variants: DRESS_SIZES,
+    rating: 4.6,
+    reviews: 44,
+    featured: false,
+  },
+  {
+    id: "7",
+    slug: "merino-oversized-cardigan",
+    name: "Merino Oversized Cardigan",
+    price: 320,
+    description:
+      "Chunky-knit merino in an oversized drop-shoulder silhouette. The sweater that makes every outfit look intentional.",
+    details: [
+      "100% extra-fine merino wool",
+      "Oversized, drop-shoulder fit",
+      "Ribbed cuffs and hem",
+      "Machine wash cold, lay flat to dry",
+      "Model is 176cm, wearing size XS",
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1467043237213-65f2da53396f?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?w=800&q=80&auto=format&fit=crop",
+    ],
+    category: "Knitwear",
+    variants: ALL_SIZES,
+    rating: 4.8,
+    reviews: 91,
+    featured: false,
+  },
+  {
+    id: "8",
+    slug: "leather-trench-coat",
+    name: "Leather Trench Coat",
+    price: 1450,
+    description:
+      "A full-length trench in butter-soft lambskin. The investment piece that elevates everything beneath it.",
+    details: [
+      "100% lambskin leather",
+      "Fully lined in satin",
+      "Belt with gold buckle",
+      "Professional leather clean only",
+      "Model is 178cm, wearing size S",
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1548624313-0396c75e4b1a?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1520367445093-50dc08a59d9d?w=800&q=80&auto=format&fit=crop",
+    ],
+    category: "Outerwear",
+    variants: ALL_SIZES,
+    rating: 5.0,
+    reviews: 38,
+    badge: "Limited",
+    featured: false,
+  },
+  {
+    id: "9",
+    slug: "cigarette-trousers-black",
+    name: "Cigarette Trousers",
+    price: 295,
+    description:
+      "Slim, cropped cigarette trousers in stretch crepe. The foundation of a sharp wardrobe, refined and effortless.",
+    details: [
+      "72% polyester, 24% viscose, 4% elastane",
+      "Slim leg, ankle-length",
+      "High-rise with elasticated back waistband",
+      "Machine wash 30Â°",
+      "Model is 176cm, wearing size XS",
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1594938298603-c8148c4b4ce4?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&q=80&auto=format&fit=crop",
+    ],
+    category: "Trousers",
+    variants: ALL_SIZES,
+    rating: 4.5,
+    reviews: 112,
+    featured: false,
+  },
+  {
+    id: "10",
+    slug: "silk-scarf-noir",
+    name: "Silk Scarf Noir",
+    price: 185,
+    originalPrice: 240,
+    description:
+      "A hand-rolled silk scarf printed with an abstract inky watercolour. Wear it at the neck, wrist, or through a bag handle.",
+    details: [
+      "100% silk twill",
+      "Hand-rolled edges",
+      "90 Ã— 90cm",
+      "Dry clean only",
+      "Arrives in a signature gift box",
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=800&q=80&auto=format&fit=crop",
+    ],
+    category: "Accessories",
+    variants: [{ size: "One Size", inStock: true }],
+    rating: 4.7,
+    reviews: 59,
+    badge: "Sale",
+    featured: false,
+  },
+];
+
+// â”€â”€â”€ Query helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+export type ProductFilters = {
+  category?: Category;
+  sort?: "price-asc" | "price-desc" | "newest" | "rating";
+  priceMin?: number;
+  priceMax?: number;
+};
+
+export function getProducts(filters?: ProductFilters): Product[] {
+  let result = [...products];
+
+  if (filters?.category) {
+    result = result.filter((p) => p.category === filters.category);
+  }
+
+  if (filters?.priceMin !== undefined) {
+    result = result.filter((p) => p.price >= filters.priceMin!);
+  }
+
+  if (filters?.priceMax !== undefined) {
+    result = result.filter((p) => p.price <= filters.priceMax!);
+  }
+
+  switch (filters?.sort) {
+    case "price-asc":
+      result.sort((a, b) => a.price - b.price);
+      break;
+    case "price-desc":
+      result.sort((a, b) => b.price - a.price);
+      break;
+    case "rating":
+      result.sort((a, b) => b.rating - a.rating);
+      break;
+    case "newest":
+    default:
+      // keep insertion order (newest = first in array)
+      break;
+  }
+
+  return result;
+}
+
+export function getProductBySlug(slug: string): Product | undefined {
+  return products.find((p) => p.slug === slug);
+}
+
+export function getProductById(id: string): Product | undefined {
+  return products.find((p) => p.id === id);
+}
+
+export function getFeaturedProducts(): Product[] {
+  return products.filter((p) => p.featured);
+}
+
+export function getRelatedProducts(product: Product, limit = 4): Product[] {
+  return products
+    .filter((p) => p.category === product.category && p.id !== product.id)
+    .slice(0, limit);
+}
+
+export function getCategories(): Category[] {
+  return Array.from(new Set(products.map((p) => p.category))) as Category[];
+}
+
+export function getStaticProductParams() {
+  return products.map((p) => ({ slug: p.slug }));
+}
+
+

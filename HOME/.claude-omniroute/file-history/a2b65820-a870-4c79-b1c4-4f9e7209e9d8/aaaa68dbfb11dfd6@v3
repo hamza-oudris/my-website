@@ -1,0 +1,93 @@
+import { Suspense } from "react";
+import { getProducts, Category } from "@/lib/products";
+import ProductCard from "@/components/ProductCard";
+import FilterSidebar from "@/components/FilterSidebar";
+
+
+type SearchParams = {
+  category?: string;
+  sort?: string;
+  priceMin?: string;
+  priceMax?: string;
+};
+
+function ProductGridSkeleton() {
+  return (
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 flex-1">
+      {Array.from({ length: 6 }).map((_, i) => (
+        <div
+          key={i}
+          className="aspect-[3/4] bg-[var(--bg-surface)] animate-pulse border border-[var(--border-default)]"
+        />
+      ))}
+    </div>
+  );
+}
+
+async function ProductGrid({ searchParams }: { searchParams: SearchParams }) {
+  const products = getProducts({
+    category: searchParams.category as Category | undefined,
+    sort: searchParams.sort as "price-asc" | "price-desc" | "newest" | "rating" | undefined,
+    priceMin: searchParams.priceMin ? Number(searchParams.priceMin) : undefined,
+    priceMax: searchParams.priceMax ? Number(searchParams.priceMax) : undefined,
+  });
+
+  if (products.length === 0) {
+    return (
+      <div className="flex-1 flex flex-col items-center justify-center py-32 text-center">
+        <p className="font-[family-name:var(--font-cormorant)] text-3xl font-light italic text-[var(--text-secondary)] mb-4">
+          No pieces found
+        </p>
+        <p className="text-sm text-[var(--text-muted)]">
+          Try adjusting your filters
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 flex-1">
+      {products.map((product, i) => (
+        <div
+          key={product.id}
+          className="animate-fade-up"
+          style={{ animationDelay: `${i * 60}ms` }}
+        >
+          <ProductCard product={product} index={i} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default async function ShopPage({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>;
+}) {
+  const params = await searchParams;
+
+  return (
+    <div className="max-w-7xl mx-auto px-6 pt-28 pb-24">
+      {/* Page header */}
+      <div className="mb-12">
+        <p className="text-xs tracking-widest uppercase text-[var(--gold-primary)] mb-2">
+          {params.category ?? "All Pieces"}
+        </p>
+        <h1 className="font-[family-name:var(--font-cormorant)] text-5xl font-light italic text-[var(--text-primary)]">
+          The Collection
+        </h1>
+      </div>
+
+      <div className="flex flex-col md:flex-row gap-10">
+        <Suspense fallback={<div className="hidden md:block w-48 shrink-0" />}>
+          <FilterSidebar />
+        </Suspense>
+
+        <Suspense fallback={<ProductGridSkeleton />}>
+          <ProductGrid searchParams={params} />
+        </Suspense>
+      </div>
+    </div>
+  );
+}

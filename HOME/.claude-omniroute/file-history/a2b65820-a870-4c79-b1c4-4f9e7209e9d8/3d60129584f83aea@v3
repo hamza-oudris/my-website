@@ -1,0 +1,57 @@
+import type { Metadata } from "next";
+import { Playfair_Display, Raleway, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { CartProvider } from "@/context/cart";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import CartDrawer from "@/components/CartDrawer";
+
+// Premium editorial serif — high contrast, used by Vogue/Harper's Bazaar
+const playfair = Playfair_Display({
+  variable: "--font-cormorant", // reuse same CSS var so all components pick it up
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+// Elegant geometric sans — refined, airy tracking
+const raleway = Raleway({
+  variable: "--font-geist-sans", // reuse same CSS var
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "MAISON NOIR — Luxury Fashion",
+  description:
+    "Curated luxury fashion for the discerning wardrobe. Editorial pieces, exceptional craft.",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html
+      lang="en"
+      className={`${playfair.variable} ${raleway.variable} ${geistMono.variable} dark`}
+    >
+      <body className="min-h-screen flex flex-col bg-[var(--bg-base)] text-[var(--text-primary)] antialiased">
+        <CartProvider>
+          <Navbar />
+          <CartDrawer />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </CartProvider>
+      </body>
+    </html>
+  );
+}

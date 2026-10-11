@@ -1,0 +1,235 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─────────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --bg-base:       #0A0A0A;
+  --bg-surface:    #111111;
+  --bg-elevated:   #1A1A1A;
+  --bg-overlay:    rgba(0, 0, 0, 0.7);
+
+  /* Gold palette */
+  --gold-primary:  #D4AF37;
+  --gold-muted:    #B8960C;
+  --gold-subtle:   rgba(212, 175, 55, 0.12);
+
+  /* Text */
+  --text-primary:  #F5F0E8;
+  --text-secondary:#A09880;
+  --text-muted:    #5A5040;
+
+  /* Borders */
+  --border-default:#2A2520;
+  --border-gold:   rgba(212, 175, 55, 0.3);
+
+  /* Functional */
+  --success:       #4CAF7A;
+  --error:         #E05A5A;
+}
+
+/* ─── Tailwind v4 Theme Extension ───────────────────────────── */
+@theme inline {
+  --font-display: var(--font-cormorant);
+  --font-body:    var(--font-geist-sans);
+
+  --color-base:        var(--bg-base);
+  --color-surface:     var(--bg-surface);
+  --color-elevated:    var(--bg-elevated);
+  --color-gold:        var(--gold-primary);
+  --color-gold-muted:  var(--gold-muted);
+  --color-primary:     var(--text-primary);
+  --color-secondary:   var(--text-secondary);
+  --color-muted:       var(--text-muted);
+  --color-border:      var(--border-default);
+}
+
+/* ─── Base Styles ───────────────────────────────────────────── */
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ─── Keyframes ─────────────────────────────────────────────── */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes slide-out-right {
+  from { transform: translateX(0); }
+  to   { transform: translateX(100%); }
+}
+
+@keyframes slide-in-left {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes slide-out-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes letterspace-in {
+  from {
+    letter-spacing: 0.4em;
+    opacity: 0;
+  }
+  to {
+    letter-spacing: 0.05em;
+    opacity: 1;
+  }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to   { background-position:  200% center; }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  50%       { transform: scale(1.4); opacity: 0.6; }
+}
+
+/* ─── Utility Classes ───────────────────────────────────────── */
+@layer utilities {
+  .animate-fade-up {
+    animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-slide-out-right {
+    animation: slide-out-right 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-slide-out-left {
+    animation: slide-out-left 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease both;
+  }
+
+  .animate-fade-out {
+    animation: fade-out 0.3s ease both;
+  }
+
+  .animate-letterspace-in {
+    animation: letterspace-in 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
+  }
+
+  /* Stagger delays */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-600 { animation-delay: 600ms; }
+  .delay-700 { animation-delay: 700ms; }
+  .delay-800 { animation-delay: 800ms; }
+
+  /* Gold gradient text */
+  .text-gold-gradient {
+    background: linear-gradient(
+      90deg,
+      var(--gold-muted),
+      var(--gold-primary),
+      var(--gold-muted)
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gold-gradient-shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--gold-muted),
+      var(--gold-primary),
+      var(--gold-muted)
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+  }
+
+  /* Hide scrollbar */
+  .scrollbar-hide {
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Gold border glow */
+  .border-gold-glow {
+    border-color: var(--border-gold);
+    box-shadow: 0 0 0 1px var(--border-gold);
+  }
+
+  /* Smooth underline on hover */
+  .link-underline {
+    position: relative;
+  }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold-primary);
+    transition: width 0.3s ease;
+  }
+  .link-underline:hover::after {
+    width: 100%;
+  }
+}
