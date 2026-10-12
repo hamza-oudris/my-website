@@ -1,5 +1,5 @@
 {
-  "numStartups": 4,
+  "numStartups": 5,
   "customApiKeyResponses": {
     "approved": [],
     "rejected": [
@@ -7,8 +7,8 @@
     ]
   },
   "tipsHistory": {
-    "new-user-warmup": 1,
-    "agents-view-multiclauding": 2,
+    "new-user-warmup": 4,
+    "agents-view-multiclauding": 4,
     "plan-mode-for-complex-tasks": 2,
     "vscode-gpu-accel-garbled-glyphs": 3,
     "memory-command": 3,
@@ -27,7 +27,8 @@
     "image-paste": 4,
     "no-flicker": 4,
     "subagent-fanout-nudge": 4,
-    "workflow-size-prompting-ambient": 4
+    "workflow-size-prompting-ambient": 4,
+    "loop-command-nudge": 4
   },
   "promptQueueUseCount": 4,
   "btwUseCount": 1,
@@ -1339,7 +1340,43 @@
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastGracefulShutdown": false,
-      "lastVersionBase": "2.1.296"
+      "lastVersionBase": "2.1.296",
+      "lastCost": 0.10408,
+      "lastAPIDuration": 15235,
+      "lastAPIDurationWithoutRetries": 15132,
+      "lastToolDuration": 0,
+      "lastDuration": 21363638,
+      "lastStartTime": 1791736696044,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 24290,
+      "lastTotalOutputTokens": 346,
+      "lastTotalCacheCreationInputTokens": 0,
+      "lastTotalCacheReadInputTokens": 0,
+      "lastTotalWebSearchRequests": 0,
+      "lastFpsAverage": 0.02,
+      "lastFpsLow1Pct": 59.9,
+      "lastModelUsage": {
+        "Free-Combo": {
+          "inputTokens": 24290,
+          "outputTokens": 346,
+          "thinkingTokens": 0,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.10408
+        }
+      },
+      "lastSessionId": "c3074733-2751-47fe-8be1-95d452cd5636",
+      "lastSessionMetrics": {
+        "frame_duration_ms_count": 350,
+        "frame_duration_ms_min": 0.11899999999877764,
+        "frame_duration_ms_max": 35.00180000000182,
+        "frame_duration_ms_avg": 1.5389725714349038,
+        "frame_duration_ms_p50": 1.262300000002142,
+        "frame_duration_ms_p95": 2.850995000000015,
+        "frame_duration_ms_p99": 15.043366999999968
+      }
     }
   },
   "lastReleaseNotesSeen": "2.1.296",
@@ -1370,8 +1407,8 @@
   "officialMarketplaceAutoInstallAttempted": true,
   "officialMarketplaceAutoInstalled": true,
   "tipLifetimeShownCounts": {
-    "new-user-warmup": 1,
-    "agents-view-multiclauding": 1,
+    "new-user-warmup": 2,
+    "agents-view-multiclauding": 2,
     "plan-mode-for-complex-tasks": 1,
     "vscode-gpu-accel-garbled-glyphs": 1,
     "memory-command": 1,
@@ -1390,11 +1427,12 @@
     "image-paste": 1,
     "no-flicker": 1,
     "subagent-fanout-nudge": 1,
-    "workflow-size-prompting-ambient": 1
+    "workflow-size-prompting-ambient": 1,
+    "loop-command-nudge": 1
   },
   "autoModeClassifierBillingNoticeAcknowledgedAt": 1791721246845,
   "autoModeEnvSetup": {
-    "denials": 2
+    "denials": 3
   },
   "hasSeenAutoModeOutsideReadPrompt": true,
   "tipsHistoryByCommand": {
@@ -1421,5 +1459,11 @@
   },
   "cachedExperimentFeatures": [],
   "cachedExperimentData": {},
-  "cachedGrowthBookFeaturesAt": 1791753755670
+  "cachedGrowthBookFeaturesAt": 1791753755670,
+  "githubRepoPaths": {
+    "hamza-oudris/my-website": [
+      "C:\\Users\\hamza\\Documents\\Codex\\2026-10-11\\referenced-chatgpt-conversation-this-is-an\\my-app"
+    ]
+  },
+  "lastClawdEntranceVersion": "2.1.296"
 }

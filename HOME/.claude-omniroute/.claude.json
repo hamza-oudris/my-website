@@ -1,5 +1,5 @@
 {
-  "numStartups": 4,
+  "numStartups": 5,
   "customApiKeyResponses": {
     "approved": [],
     "rejected": [
@@ -1339,7 +1339,7 @@
       "hasTrustDialogAccepted": true,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
-      "lastGracefulShutdown": true,
+      "lastGracefulShutdown": false,
       "lastVersionBase": "2.1.296",
       "lastCost": 0.10408,
       "lastAPIDuration": 15235,
@@ -1432,7 +1432,7 @@
   },
   "autoModeClassifierBillingNoticeAcknowledgedAt": 1791721246845,
   "autoModeEnvSetup": {
-    "denials": 3
+    "denials": 4
   },
   "hasSeenAutoModeOutsideReadPrompt": true,
   "tipsHistoryByCommand": {
@@ -1459,5 +1459,11 @@
   },
   "cachedExperimentFeatures": [],
   "cachedExperimentData": {},
-  "cachedGrowthBookFeaturesAt": 1791753755670
+  "cachedGrowthBookFeaturesAt": 1791753755670,
+  "githubRepoPaths": {
+    "hamza-oudris/my-website": [
+      "C:\\Users\\hamza\\Documents\\Codex\\2026-10-11\\referenced-chatgpt-conversation-this-is-an\\my-app"
+    ]
+  },
+  "lastClawdEntranceVersion": "2.1.296"
 }
